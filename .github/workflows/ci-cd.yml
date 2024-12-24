@@ -61,6 +61,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
           cd /www/zhoucici/
           tar -xzf /www/zhoucici/build.tar.gz -C /www/zhoucici/
-          mv ./docs/.vitepress/dist /www/zhoucici/
+          mv ./docs/.vitepress/dist/* /www/zhoucici/
           rm -rf /www/zhoucici/build.tar.gz
           EOF

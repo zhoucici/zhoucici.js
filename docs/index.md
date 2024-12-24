@@ -11,12 +11,8 @@ hero:
       link: /docs/guide/
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 项目杂记
+    details: 记录一些项目中发生的一些事情，以及解决的一些问题
 ---
 
 

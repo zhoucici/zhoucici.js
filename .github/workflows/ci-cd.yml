@@ -34,7 +34,7 @@ jobs:
           fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       - uses: pnpm/action-setup@v3 # 如果使用 pnpm，请取消注释
         with:
-          version: "latest"
+          version: 'latest'
       # - uses: oven-sh/setup-bun@v1 # 如果使用 Bun，请取消注释
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -45,12 +45,28 @@ jobs:
         run: pnpm install # 或 pnpm install / yarn install / bun install
       - name: Build with VitePress
         run: pnpm docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
-      - name: Copy build artifacts to server
-        uses: easingthemes/ssh-deploy@v2.1.5 # 使用一个支持 SSH 部署的 Action
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # 您的 SSH 私钥，应作为仓库机密存储
-          ARGS: "-avz -r --delete" # scp 命令的参数
-          SOURCE: "docs/.vitepress/dist/" # 构建产物的源路径
-          REMOTE_HOST: ${{ secrets.SERVER_HOST }} # 您的服务器 IP 地址或域名，应作为仓库机密存储
-          REMOTE_USER: ${{ secrets.SERVER_USER }} # 您的服务器用户名，应作为仓库机密存储
-          TARGET: "/www/zhoucici/" # 服务器上的目标路径
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # 设置SSH密钥（从GitHub Secrets中获取）
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      # - name: Add server to known_hosts
+        # run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+      # 连接到服务器并执行命令来推送文件
+      - name: Deploy files via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          cd /www/zhoucici/
+          rm -rf *
+          rsync -avz --exclude='.git' /docs/ .
+          EOF

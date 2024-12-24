@@ -57,11 +57,9 @@ jobs:
       # 连接到服务器并执行命令来推送文件
       - name: Deploy files via SSH
         run: |
-          
+          scp -o StrictHostKeyChecking=no build.tar.gz ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/www/zhoucici/
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
           cd /www/zhoucici/
-          rm -rf *
-          scp -o StrictHostKeyChecking=no build.tar.gz ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/www/zhoucici/
           tar -xzf /www/zhoucici/build.tar.gz -C /www/zhoucici/
           mv ./docs/.vitepress/dist /www/zhoucici/
           rm -rf /www/zhoucici/build.tar.gz

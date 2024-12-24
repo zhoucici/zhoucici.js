@@ -47,15 +47,18 @@ jobs:
         run: pnpm docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
       - name: Upload artifact
         run: tar -czf build.tar.gz ./docs/.vitepress/dist  # 压缩构建输出的目录
-      - name: Deploy to server via SSH
-        env:
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-          SERVER_HOST: ${{ secrets.SERVER_HOST }}
-          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+      # 设置SSH密钥（从GitHub Secrets中获取）
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      # - name: Add server to known_hosts
+        # run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+      # 连接到服务器并执行命令来推送文件
+      - name: Deploy files via SSH
         run: |
-          eval "$(ssh-agent -s)"
-          echo "$SERVER_SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
-          mkdir -p ~/.ssh
-          ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
           scp -o StrictHostKeyChecking=no build.tar.gz $SERVER_USER@$SERVER_HOST:/www/zhoucici/
-          ssh $SERVER_USER@$SERVER_HOST "tar -xzf /www/zhoucici/build.tar.gz -C /www/zhoucici/"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          cd /www/zhoucici/
+          tar -xzf /www/zhoucici/build.tar.gz -C /www/zhoucici/
+          EOF

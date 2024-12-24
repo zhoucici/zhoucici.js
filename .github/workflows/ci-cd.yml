@@ -53,6 +53,7 @@ jobs:
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
           SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
         run: |
+          eval "$(ssh-agent -s)"
           echo "$SERVER_SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
           mkdir -p ~/.ssh
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts

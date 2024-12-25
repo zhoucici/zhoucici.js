@@ -46,7 +46,7 @@ jobs:
       - name: Build with VitePress
         run: pnpm docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
       - name: Upload artifact
-        run: tar -czf build.tar.gz ./docs/.vitepress/dist  # 压缩构建输出的目录
+        run: tar -czf build.tar.gz ./docs/.vitepress/dist/  # 压缩构建输出的目录
       # 设置SSH密钥（从GitHub Secrets中获取）
       - name: Set up SSH key
         uses: webfactory/ssh-agent@v0.5.4
@@ -60,6 +60,10 @@ jobs:
           scp -o StrictHostKeyChecking=no build.tar.gz ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/www/
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
           cd /www/zhoucici/
-          tar -xzf /www/build.tar.gz -C /www/zhoucici/
-          mv ./docs/.vitepress/dist/* /www/zhoucici/
+          rm -rf *
+          mkdir -p /www/bac/  
+          tar -xzf /www/build.tar.gz -C /www/bac/
+          mv /www/bac/docs/.vitepress/dist/* /www/zhoucici/
+          rm -rf /www/build.tar.gz
+          rm -rf /www/bac
           EOF

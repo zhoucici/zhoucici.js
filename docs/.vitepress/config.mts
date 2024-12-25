@@ -14,7 +14,10 @@ export default defineConfig({
       prev: '上一页',
       next: '下一页'
     },
-
+    footer: {
+      message: 'zhoucici的个人技术博客',
+      copyright: 'Copyright © 2024-present zhoucici'
+    },
     outline: {
       label: '页面导航'
     },
@@ -32,7 +35,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/zhoucici/zhoucici.js' }
     ]
   }
 })

@@ -1,3 +1,9 @@
+---
+{
+  "title": "导航",
+  'description': "zhoucici.js页面导航"
+}
+---
 [项目杂记](/docs/project/)
 
 > 记录一些在项目中发生的一些问题和解决方案。

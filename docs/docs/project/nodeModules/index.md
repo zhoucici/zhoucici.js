@@ -1,3 +1,9 @@
+---
+{
+  "title": "修改node_modules中的文件",
+  'description': "几种修改node_modules中的文件的方法"
+}
+---
 # 项目中修改node_modules中的文件
 
 ## why

@@ -1,7 +1,9 @@
 ---
 {
   "title": "项目专题",
+  'description': "记录zhoucici的项目相关的技术文章"
+
 }
 ---
 
-## [项目中修改node_modules中的文件](./nodeModules/index.md)
+## [JS中的最快的循环](./nodeModules/index.md)

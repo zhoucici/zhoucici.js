@@ -8,7 +8,8 @@ export default defineConfig({
   themeConfig: {
     siteTitle:'zhoucici',
     nav: [
-      { text: '项目', link: '/docs/project/' }
+      { text: '项目', link: '/docs/project/' },
+      { text: 'JavaScript', link: '/docs/javascript/' },
     ],
     docFooter: {
       prev: '上一页',
@@ -32,6 +33,16 @@ export default defineConfig({
           link:'/docs/project/nodeModules/'
         }
       ],
+      '/docs/javascript/' : [
+        {
+          text: 'JavaScript',
+          link:'/docs/javascript/'
+        },
+        {
+          text:'JS中的最快的循环',
+          link:'/docs/javascript/loop/'
+        }
+      ]
     },
 
     socialLinks: [

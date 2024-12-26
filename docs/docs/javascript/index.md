@@ -7,3 +7,4 @@
 ---
 
 ## [JavaScript 中最快的循环是什么？](./loop/index.md)
+## [手搓Promise](./promise/index.md)

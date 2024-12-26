@@ -41,6 +41,10 @@ export default defineConfig({
         {
           text:'JS中的最快的循环',
           link:'/docs/javascript/loop/'
+        },
+        {
+          text:'手搓Promise',
+          link:'/docs/javascript/promise/'
         }
       ]
     },

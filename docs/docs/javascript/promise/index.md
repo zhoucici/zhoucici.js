@@ -12,7 +12,7 @@
 
 ## 1. Promise声明
 首先呢，promise肯定是一个类，我们就用class来声明。
-- 由于`new Promise((resolve, reject)=>{})`，所以传入一个参数（函数），秘籍里叫他executor，传入就执行。
+- 由于`new Promise((resolve, reject)=>{})`，所以传入一个参数（函数），[`老A`](https://promisesaplus.com/)里叫他executor，传入就执行。
 - executor里面有两个参数，一个叫resolve（成功），一个叫reject（失败）。
 - 由于resolve和reject可执行，所以都是函数，我们用let声明。
 
@@ -300,10 +300,11 @@ function resolvePromise(promise2, x, resolve, reject){
   }
 }
 ```
-## 7. 完解决其他问题
+## 7. 解决其他问题
 [`老A`](https://promisesaplus.com/)规定onFulfilled,onRejected都是可选参数，如果他们不是函数，必须被忽略
 - onFulfilled返回一个普通的值，成功时直接等于 `value => value`
-- onRejected返回一个普通的值，失败时如果直接等于 value => value，则会跑到下一个then中的onFulfilled中，所以直接扔出一个错误`reason => throw err`2、秘籍规定onFulfilled或onRejected不能同步被调用，必须异步调用。我们就用setTimeout解决异步问题
+- onRejected返回一个普通的值，失败时如果直接等于 value => value，则会跑到下一个then中的onFulfilled中，所以直接扔出一个错误`reason => throw err`
+- [`老A`](https://promisesaplus.com/)规定onFulfilled或onRejected不能同步被调用，必须异步调用。我们就用setTimeout解决异步问题
 - 如果onFulfilled或onRejected报错，则直接返回reject()
 ```javascript
   class Promise{

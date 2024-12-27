@@ -31,6 +31,10 @@ export default defineConfig({
         {
           text: '项目中修改node_modules中的文件',
           link:'/docs/project/nodeModules/'
+        },
+        {
+          text: '多请求控制并发：队列',
+          link:'/docs/project/handQueue/'
         }
       ],
       '/docs/javascript/' : [

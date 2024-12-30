@@ -49,6 +49,10 @@ export default defineConfig({
         {
           text:'手搓Promise',
           link:'/docs/javascript/promise/'
+        },
+        {
+          text:'函数柯里化',
+          link:'/docs/javascript/curry/'
         }
       ]
     },

@@ -119,10 +119,20 @@ let list = [
 ]
 ```
 我们需要获取数据中的所有 name 属性的值，常规思路下，我们会这样实现:
+
 ```javascript
 let names = list.map(function(item) {
   return item.name;
 })
+```
+
+那么我们如何用柯里化的思维来实现呢
+
+```javascript
+let prop = curry(function(key,obj) {
+    return obj[key];
+})
+let names = list.map(prop('name'))
 ```
 看到这里，可能会有疑问，这么简单的例子，仅仅只是为了获取 name 的属性值，为何还要实现一个 prop 函数呢，这样太麻烦了吧。
 

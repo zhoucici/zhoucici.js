@@ -5,6 +5,12 @@ export default defineConfig({
   lang: 'zh-CN',
   title: "zhoucici",
   description: "zcc杂记",
+  head:[
+    ['meta',{
+      name:'baidu-site-verification',
+      content:'codeva-MqiaYQZUQJ'
+    }]
+  ],
   themeConfig: {
     siteTitle:'zhoucici',
     nav: [

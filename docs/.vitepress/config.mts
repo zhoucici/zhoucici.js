@@ -5,6 +5,9 @@ export default defineConfig({
   lang: 'zh-CN',
   title: "zhoucici",
   description: "zcc杂记",
+  sitemap: {
+    hostname: 'https://zhoucici.cn'
+  },
   head:[
     ['meta',{
       name:'baidu-site-verification',

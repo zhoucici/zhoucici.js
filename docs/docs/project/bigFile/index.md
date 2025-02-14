@@ -32,7 +32,7 @@
 3. 分片上传
    
     * 上传分片之前可以先通过分片hash值询问后端是否已经存在对应的分片（续传、秒传）
-    * 使用 Ajax（通常是 XMLHttpRequest 或 Fetch API）逐个上传每个分片（可以参考[多请求控制并发：队列](../handQueue)）。
+    * 使用 Ajax（通常是 XMLHttpRequest 或 Fetch API）逐个上传每个分片（可以参考[多请求控制并发：队列](/docs/project/handQueue/)）。
     * 可以设置并发上传的数量，以平衡网络负载。
 
 4. 进度监控

@@ -44,6 +44,10 @@ export default defineConfig({
         {
           text: '多请求控制并发：队列',
           link:'/docs/project/handQueue/'
+        },
+        {
+          text: '大文件上传',
+          link:'/docs/project/bigFile/'
         }
       ],
       '/docs/javascript/' : [

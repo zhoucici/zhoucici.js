@@ -4,6 +4,7 @@
 ## 项目
 - [项目中修改node_modules中的文件](https://www.conardli.top/docs/project/nodeModules)
 - [多请求控制并发：队列](https://www.conardli.top/docs/project/handQueue)
+- [大文件上传](https://www.conardli.top/docs/project/bigFile)
 
 ## JaveScript
 - [JavaScript 中最快的循环是什么？](https://www.conardli.top/docs/javascript/loop)

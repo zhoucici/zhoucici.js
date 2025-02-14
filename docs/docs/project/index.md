@@ -8,3 +8,4 @@
 
 ## [项目中修改node_modules中的文件](./nodeModules/index.md)
 ## [多请求控制并发：队列](./handQueue/index.md)
+## [大文件上传](./bigFile/index.md)

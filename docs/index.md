@@ -37,6 +37,7 @@ features:
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
   .contact img{
     width:50px;
